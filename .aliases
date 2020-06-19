@@ -1,0 +1,14 @@
+alias ls="ls --color=auto"
+alias l="ls -la"
+alias grep="grep --color=auto"
+alias rm="rm -I"
+alias cp="cp -r"
+alias usermount="mount -o uid=$(id -u $USER),gid=$(id -g $USER)"
+#quick ones for the libreoffice packages
+alias calc="libreoffice --calc"
+alias writer="libreoffice --writer"
+alias impress="libreoffice --calc"
+alias draw="libreoffice --draw"
+
+alias diffy="diff -y --color=auto"
+
