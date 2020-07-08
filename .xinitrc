@@ -10,7 +10,7 @@ setxkbmap -layout de
 xcompmgr &
 
 # start dunst to enable notifications
-duns &
+dunst &
 
 #remap escape and capslock key
 xmodmap ~/.Xmodmap
