@@ -17,6 +17,9 @@ bindkey "^[[F": end-of-line
 # make it pretty
 autoload -U colors && colors
 
+#preload calc
+autoload -zU zcalc
+
 # redefine command prompt appearence
 PS1="%B[%{$fg[red]%}%n%{$reset_color%}@%M %~] $%b "
 
@@ -58,7 +61,7 @@ unset __conda_setup
 export CMDSTAN="/home/lukas/cmdstan-2.23.0"
 export EDITOR=vim
 export BROWSER=brave
-export TERMINAL=urxvt
+export TERMINAL=termite
 
 # source syntax highlighting because why not
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
