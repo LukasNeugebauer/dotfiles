@@ -23,6 +23,7 @@ Plugin 'ycm-core/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
+Plugin 'xuhdev/vim-latex-live-preview'
 
 call vundle#end()
 filetype plugin indent on
