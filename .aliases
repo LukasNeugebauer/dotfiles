@@ -9,6 +9,6 @@ alias calc="libreoffice --calc"
 alias writer="libreoffice --writer"
 alias impress="libreoffice --calc"
 alias draw="libreoffice --draw"
-
+alias activate="conda activate"
 alias diffy="diff -y --color=auto"
-
+alias history="history 0"
