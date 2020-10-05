@@ -21,7 +21,7 @@ autoload -U colors && colors
 autoload -zU zcalc
 
 # redefine command prompt appearence
-PS1="%B[%{$fg[red]%}%n%{$reset_color%}@%M %~] $%b "
+PS1="[%{$fg[red]%}%n%{$reset_color%}@%M %~] $%b "
 
 # unset multios option to get bash-like stdin/out/err behavior
 unsetopt MULTIOS
@@ -35,7 +35,7 @@ HISTFILE=~/.cache/zsh/history
 [ -f "$HOME/.aliases" ] && source "$HOME/.aliases" 
 
 # add path to custom shell scripts
-export PATH=/usr/local/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/shell_scripts
+export PATH=/usr/local/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.local/bin:~/shell_scripts
 
 # enable autocomplete
 autoload -U compinit
@@ -58,7 +58,7 @@ fi
 unset __conda_setup
 
 # set some environment variables
-export CMDSTAN="/home/lukas/cmdstan-2.23.0"
+export CMDSTAN="/home/lukas/cmdstan-2.24.1"
 export EDITOR=vim
 export BROWSER=brave
 export TERMINAL=termite
