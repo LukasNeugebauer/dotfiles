@@ -13,3 +13,4 @@ alias activate="conda activate"
 alias diffy="diff -y --color=auto"
 alias history="history 0"
 alias matlab="$TERMINAL -e matlab"
+alias rstudio=rstudio-bin
