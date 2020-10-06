@@ -13,15 +13,24 @@ bindkey "^[OH": beginning-of-line
 bindkey "^[OF": end-of-line
 bindkey "^[[H": beginning-of-line
 bindkey "^[[F": end-of-line
-	
+
 # make it pretty
 autoload -U colors && colors
 
 #preload calc
 autoload -zU zcalc
 
+#preload git info
+autoload -zU vcs_info
+precmd() { vcs_info }
+setopt prompt_subst
+
 # redefine command prompt appearence
-PS1="[%{$fg[red]%}%n%{$reset_color%}@%M %~] $%b "
+PS1="%B[%{$fg[red]%}%n%{$reset_color%}@%M %~] $%b "
+# RPROMPT shows on the right
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats "%B%{$fg[yellow]%}[ %b]"
+
 
 # unset multios option to get bash-like stdin/out/err behavior
 unsetopt MULTIOS
@@ -29,10 +38,11 @@ unsetopt MULTIOS
 # define history
 HISTSIZE=10000
 SAVEHIST=10000
+
 HISTFILE=~/.cache/zsh/history
 
 # load alises
-[ -f "$HOME/.aliases" ] && source "$HOME/.aliases" 
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 
 # add path to custom shell scripts
 export PATH=/usr/local/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.local/bin:~/shell_scripts
