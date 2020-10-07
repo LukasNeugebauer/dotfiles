@@ -1,18 +1,18 @@
 # zsh config file
 
 # get rid of super stupid key bindings
-bindkey "^[[7~" beginning-of-line
-bindkey "^[[8~" end-of-line
-bindkey "^[[3~" delete-char
-bindkey "^[[2~" quoted-insert
-bindkey "^[[1~": beginning-of-line
-bindkey "^[[4~": end-of-line
-bindkey "^[[7~": beginning-of-line
-bindkey "^[[8~": end-of-line
-bindkey "^[OH": beginning-of-line
-bindkey "^[OF": end-of-line
-bindkey "^[[H": beginning-of-line
-bindkey "^[[F": end-of-line
+bindkey '\e[7~' beginning-of-line
+bindkey '\e[8~' end-of-line
+bindkey '\e[3~' delete-char
+bindkey '\e[2~' quoted-insert
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+bindkey '\e[7~' beginning-of-line
+bindkey '\e[8~' end-of-line
+bindkey '\eOH' beginning-of-line
+bindkey '\eOF' end-of-line
+bindkey '\e[H' beginning-of-line
+bindkey '\e[F' end-of-line
 
 # make it pretty
 autoload -U colors && colors
