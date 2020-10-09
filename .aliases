@@ -1,20 +1,29 @@
+# general linux stuff
 alias ls="ls --color=auto"
 alias l="ls -la"
 alias grep="grep --color=auto"
 alias rm="rm -I"
 alias cp="cp -r"
 alias usermount="sudo mount -o uid=$(id -u $USER),gid=$(id -g $USER)"
-#quick ones for the libreoffice packages
+alias diffy="diff -y --color=auto"
+alias history="history 0"
+
+# quick ones for the libreoffice packages
 alias calc="libreoffice --calc"
 alias writer="libreoffice --writer"
 alias impress="libreoffice --calc"
 alias draw="libreoffice --draw"
+
+# conda
 alias activate="conda activate"
-alias diffy="diff -y --color=auto"
-alias history="history 0"
-alias matlab="$TERMINAL -e matlab"
+
+# rstudio
 alias rstudio=rstudio-daily-bin
 
 # git aliases
 alias ga="git add"
 alias gc="git commit -m"
+
+# matlab
+alias tmatlab="$TERMINAL -e matlab"
+alias mls="/usr/bin/matlab -nodesktop -nodisplay -nojvm -nosplash"
