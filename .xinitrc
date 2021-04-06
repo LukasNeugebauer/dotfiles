@@ -1,22 +1,31 @@
 #Config file that gets sourced when you use startx or xinit
 
-#set keyboard layout to de
-setxkbmap -layout de
+#find out if we're running on VNC
+VNCSESSION=
+SESSION=$(echo $DISPLAY | cut -d: -f2 )
+[[ $SESSION -gt 0 ]] && VNCSESSION=SESSION
 
-#set backgroun if tty=1
-[[ $XDG_VTNR -eq 1 ]] && ~/.fehbg &
-# start transparency
-xcompmgr &
+#do this is local session
+if [[ -z $VNCSESSION ]]; then
+    #set keyboard layout to de
+    setxkbmap -layout de
 
-# start dunst to enable notifications
-dunst &
+    #set backgroun if tty=1
+    [[ $XDG_VTNR -eq 1 ]] && ~/.fehbg &
+    # start transparency
+    xcompmgr &
 
-#remap escape and capslock key
-xmodmap ~/.Xmodmap
+    # start dunst to enable notifications
+    dunst &
 
-#start i3 window manager or xfce depending on tty
-case $XDG_VTNR in
-	1) exec i3 ;;
-	2) exec startxfce4;;
-	*) echo "I don't know what to on tty $XDG_VTRN"
-esac
+    #remap escape and capslock key
+    xmodmap ~/.Xmodmap
+
+    #start i3 window manager or xfce depending on tty
+    case $XDG_VTNR in
+        1) exec startxfce4;;
+        2) exec i3 ;;
+        *) echo "I don't know what to on tty $XDG_VTRN"
+    esac
+    ~/.screenlayout/.screen_ho.sh
+fi

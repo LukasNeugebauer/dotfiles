@@ -68,7 +68,7 @@ fi
 unset __conda_setup
 
 # set some environment variables
-export CMDSTAN="/home/lukas/cmdstan-2.24.1"
+export CMDSTAN="/home/lukas/cmdstan-2.26.1"
 export EDITOR=vim
 export BROWSER=brave
 export TERMINAL=termite

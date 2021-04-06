@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-fill '/home/lukas/pics/bg/windows_arch_logo.jpg' 
+feh --no-fehbg --bg-fill '/home/lukas/pics/bg/gradient.png'

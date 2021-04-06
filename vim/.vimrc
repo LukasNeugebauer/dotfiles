@@ -48,10 +48,12 @@ vnoremap <C-c> "+y
     " cut, same except delete selection in vim
 vnoremap <C-x> "+x
     " paste -> change selection, exit insert mode, paste special buffer
-vnoremap <C-v> c<ESC>"+P
+    " I used y instead of v to keep ctrl+v for visual block mode, y is
+    " consistent with yanking
+vnoremap <C-y> c<ESC>"+P
 "normal mode, no copy, because what would you copy
     " paste after to mimic expected behavior
-nnoremap <C-V> "+gP
+nnoremap <C-y> "+gP
 
 "set up folding
 set foldmethod=indent

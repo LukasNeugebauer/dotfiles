@@ -26,4 +26,10 @@ alias gc="git commit -m"
 
 # matlab
 alias tmatlab="$TERMINAL -e matlab"
-alias mls="/usr/bin/matlab -nodesktop -nodisplay -nojvm -nosplash"
+alias mls="/usr/bin/matlab -nodesktop -nosplash"
+
+# todo.txt aka toto.sh
+alias t=/usr/bin/todo.sh
+
+# wttr.in doesn't find my location
+alias wetter="curl wttr.in/Hamburg"
