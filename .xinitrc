@@ -11,7 +11,7 @@ if [[ -z $VNCSESSION ]]; then
     setxkbmap -layout de
 
     #set backgroun if tty=1
-    [[ $XDG_VTNR -eq 1 ]] && ~/.fehbg &
+    [[ $XDG_VTNR -eq 1 ]] && nitrogen --restore
     # start transparency
     xcompmgr &
 
@@ -23,9 +23,9 @@ if [[ -z $VNCSESSION ]]; then
 
     #start i3 window manager or xfce depending on tty
     case $XDG_VTNR in
-        1) exec startxfce4;;
-        2) exec i3 ;;
+        1) exec i3 ;;
+        2) exec startxfce4;;
         *) echo "I don't know what to on tty $XDG_VTRN"
     esac
-    ~/.screenlayout/.screen_ho.sh
+    #~/.screenlayout/.screen_ho.sh
 fi
