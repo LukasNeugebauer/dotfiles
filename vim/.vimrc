@@ -18,18 +18,21 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'eigenfoo/stan-vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'nvie/vim-flake8'
-Plugin 'scrooloose/nerdtree'
-Plugin 'xuhdev/vim-latex-live-preview'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
+    Plugin 'gmarik/Vundle.vim'
+    Plugin 'eigenfoo/stan-vim'
+    Plugin 'tmhedberg/SimpylFold'
+    Plugin 'vim-scripts/indentpython.vim'
+    Plugin 'ycm-core/YouCompleteMe'
+    Plugin 'vim-syntastic/syntastic'
+    Plugin 'nvie/vim-flake8'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'xuhdev/vim-latex-live-preview'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    "some additional colorschemes because why not
+    Plugin 'morhetz/gruvbox'
+    Plugin 'sainnhe/gruvbox-material'
+    Plugin 'fcpg/vim-fahrenheit'
 call vundle#end()
 filetype plugin indent on
 
@@ -79,3 +82,8 @@ au Bufread,BufNewFile *.py,*.pyw,*.c,*.h,*.stan match BadWhitespace /\s\+$/
 " automatically deletes all trailing whitespace and newlines at end of file on save.
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e
+
+"colorscheme, is depending on vundle, so needs to be after that
+set t_Co=265
+colo gruvbox
+"hi Normal ctermbg=NONE
