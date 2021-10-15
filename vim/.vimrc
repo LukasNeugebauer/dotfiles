@@ -29,6 +29,7 @@ call vundle#begin()
     Plugin 'xuhdev/vim-latex-live-preview'
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'powerline/powerline'
     "some additional colorschemes because why not
     Plugin 'morhetz/gruvbox'
     Plugin 'sainnhe/gruvbox-material'
