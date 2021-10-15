@@ -7,6 +7,7 @@ alias cp="cp -r"
 alias usermount="sudo mount -o uid=$(id -u $USER),gid=$(id -g $USER)"
 alias diffy="diff -y --color=auto"
 alias history="history 0"
+alias df="df -h"
 
 # quick ones for the libreoffice packages
 alias calc="libreoffice --calc"
@@ -33,3 +34,6 @@ alias t=/usr/bin/todo.sh
 
 # wttr.in doesn't find my location
 alias wetter="curl wttr.in/Hamburg"
+
+# lol
+alias please='sudo $(fc -ln -1)'
