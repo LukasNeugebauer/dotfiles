@@ -85,6 +85,8 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e
 
 "colorscheme, is depending on vundle, so needs to be after that
-set t_Co=265
+let g:gruvbox_transparent_background = 0
+let g:gruvbox_termcolors = 1
+let g:gruvbox_contrast_dark="medium"
 colo gruvbox
-"hi Normal ctermbg=NONE
+set bg=dark
