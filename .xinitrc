@@ -13,7 +13,7 @@ if [[ -z $VNCSESSION ]]; then
     #set backgroun if tty=1
     [[ $XDG_VTNR -eq 1 ]] && nitrogen --restore
     # start transparency
-    xcompmgr &
+    picom & disown
 
     # start dunst to enable notifications
     dunst &
@@ -24,7 +24,6 @@ if [[ -z $VNCSESSION ]]; then
     #start i3 window manager or xfce depending on tty
     case $XDG_VTNR in
         1) exec i3 ;;
-        2) exec startxfce4;;
         *) echo "I don't know what to on tty $XDG_VTRN"
     esac
     #~/.screenlayout/.screen_ho.sh
