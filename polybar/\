@@ -42,6 +42,7 @@ primary = #d79921
 secondary = #689d6a
 
 [bar/laptop]
+[bar/work]
 monitor = ${env:MONITOR:eDP1}
 monitor-fallback = HDMI-1
 ; bar on top, not bottom
@@ -68,17 +69,18 @@ padding = 2
 module-margin = 2
 
 ; fonts to get all the emoji bullshit going
-font-0 = Source Code Pro:size=9
-font-1 = Siji:pixelsize=10;1
-font-2 = fixed:pixelsize=10;1
-font-3 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-0 = Source Code Pro for Powerline:size=9
+font-1 = fixed:pixelsize=10;1
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = siji:pixelsize=10;1
 font-4 = NotoColorEmoji:scale=10
+font-5 = ProFont for Powerline:size=9
 
 
 ; modules added to the bar
 modules-left = i3
-modules-center =
-modules-right = battery0 battery1 filesystem pulseaudio xkeyboard memory cpu eth temperature date powermenu
+modules-center = xwindow
+modules-right = filesystem pulseaudio xkeyboard memory cpu eth temperature date powermenu
 
 separator = |
 wm_name = i3
@@ -92,8 +94,8 @@ locale = en_US.UTF-8
 ;i3 specific suff
 wm-restack = i3
 ;override-redirect = true
-scroll-up = i3wm.next
-scroll-down = i3wm.prev
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -163,7 +165,6 @@ cursor-scroll = ns-resize
 type = internal/xwindow
 label = %title:0:60:...%
 label-color = ${colors.aqua}
-
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
@@ -353,6 +354,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
+battery = BAT0
 adapter = ADP1
 full-at = 98
 
@@ -382,14 +384,6 @@ animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
-
-[module/battery0]
-inherit = module/battery
-battery = BAT0
-
-[module/battery1]
-inherit = module/battery
-battery = BAT1
 
 [module/temperature]
 type = internal/temperature
@@ -484,5 +478,3 @@ type = custom/ipc
 hook-0 = echo ""
 ; Playing/paused show song name and artist
 hook-1 = spotifyctl -q status --format '%artist%: %title%'
-
-# vim: set ft=dosini :

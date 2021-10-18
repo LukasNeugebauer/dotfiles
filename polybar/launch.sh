@@ -1,5 +1,13 @@
 #!/usr/bin/bash
 
+#determine bar type depending on hostname
+name=$(hostname)
+if [ $name = anarchy ]; then
+    bartype=laptop
+else
+    bartype=default
+fi
+
 # terminate old instances if they're running
 killall -q polybar
 
@@ -7,5 +15,11 @@ killall -q polybar
 spotify-listener & disown
 
 # launch new polybar on top, not bottom
-echo "Starting polybar" | tee -a /tmp/polybar.log & disown
-polybar top 2>&1 | tee -a /tmp/polybar.log & disown
+# check if xrandr is available to draw for all connected monitors
+if type xrandr; then
+    for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        MONITOR=$m polybar --reload $bartype & disown
+    done
+else
+    polybar --reload $bartype & disown
+fi
