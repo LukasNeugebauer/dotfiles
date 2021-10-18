@@ -50,7 +50,7 @@ bindsym XF86AudioPrev exec playerctl --player=spotify previous
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -184,15 +184,19 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Gaps business
-gaps inner 6
-gaps outer 6
+gaps inner 4
+gaps outer 4
+#only use gaps if theres more than 1 container
+smart_gaps on
+#only use outer gaps if there is 1 container
+smart_gaps inverse_outer
 
 # Bind programs to keys
 bindsym $mod+Shift+b exec brave
 bindsym $mod+Shift+t exec thunderbird
-bindsym $mod+Shift+f exec termite -e ranger
-bindsym $mod+Shift+v exec termite -e vim
-bindsym $mod+Shift+z exec termite -e htop
+bindsym $mod+Shift+f exec alacritty -e ranger
+bindsym $mod+Shift+v exec alacritty -e vim
+bindsym $mod+Shift+z exec alacritty -e htop
 bindsym $mod+Shift+s exec flameshot full -c
 
 # Keymap for lockscreen
@@ -210,6 +214,9 @@ for_window [class="Zotero" title="Quick Format Citation"] floating enable
 for_window [class="Zotero" title="Progress"] floating enable
 #same for zoom
 for_window [class="zoom"] floating enable
+
+#no more titlebars
+for_window [class=".*"] border pixel 1
 
 #colorscheme and bar config
 set $bg #282828
@@ -249,7 +256,7 @@ bar {
 
 # Use gruvbox colors for that consistency feel (tm)
 # class                 border|backgr|text|indicator|child_border
-client.focused          $yellow $yellow $darkgray $aqua $darkgray
+client.focused          $yellow $yellow $darkgray $aqua $yellow
 client.focused_inactive $darkgray $darkgray $yellow $aqua $darkgray
 client.unfocused        $darkgray $darkgray $yellow $aqua $darkgray
 client.urgent           $red $red $white $red $red
