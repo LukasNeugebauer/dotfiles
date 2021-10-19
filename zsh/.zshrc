@@ -10,8 +10,8 @@ unsetopt MULTIOS
 
 #same for general shell options
 #these are just copied for now, too lazy to look them up
-setopt   notify globdots correct pushdtohome cdablevars autolist
-setopt   correctall autocd recexact longlistjobs
+setopt   notify globdots pushdtohome cdablevars autolist
+setopt   autocd recexact longlistjobs
 setopt   autoresume histignoredups pushdsilent
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
