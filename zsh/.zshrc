@@ -114,10 +114,8 @@ export TERMINAL=alacritty
 # source syntax highlighting because why not
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# completely useless but looks cool and impresses normies
-neofetch
-
 #define some functions, extract is pretty nice
+#these are stolen from the manjaro config I think
 function extract {
  if [ -z "$1" ]; then
     # display usage if no parameters given
@@ -171,4 +169,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+export PATH="$HOME/shell_scripts:$PATH"
 
+# completely useless but looks cool and impresses normies
+neofetch
