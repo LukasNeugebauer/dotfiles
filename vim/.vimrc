@@ -64,6 +64,10 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
+"fix mouse issue in alacritty
+set mouse=a
+set ttymouse=sgr
+
 "filetype specific things
 
 "make everything in python file compatible with PEP8
