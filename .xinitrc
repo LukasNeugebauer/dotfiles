@@ -5,21 +5,22 @@ VNCSESSION=
 SESSION=$(echo $DISPLAY | cut -d: -f2 )
 [[ $SESSION -gt 0 ]] && VNCSESSION=SESSION
 
-#do this is local session
+#do this in local session
 if [[ -z $VNCSESSION ]]; then
-    #set keyboard layout to de
-    setxkbmap -layout de
 
     #set backgroun if tty=1
     [[ $XDG_VTNR -eq 1 ]] && nitrogen --restore
-    # start transparency
+
+    # start transparency, switched to picom
     picom & disown
 
     # start dunst to enable notifications
-    dunst &
+    dunst & disown
 
+    #set keyboard layout to de for main computer
+    [[ $(hostname) = 'archlinux' ]] && setxkbmap -layout de
     #remap escape and capslock key
-    xmodmap ~/.Xmodmap
+    setxkbmap -option caps:swapescape
 
     #start i3 window manager or xfce depending on tty
     case $XDG_VTNR in
