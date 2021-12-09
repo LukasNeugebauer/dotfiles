@@ -12,7 +12,8 @@ if [[ -z $VNCSESSION ]]; then
     [[ $XDG_VTNR -eq 1 ]] && nitrogen --restore
 
     # start transparency, switched to picom
-    picom & disown
+    # kicked out, not adding much and flickering windows sometimes
+    #picom & disown
 
     # start dunst to enable notifications
     dunst & disown
