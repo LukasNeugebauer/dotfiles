@@ -198,6 +198,7 @@ bindsym $mod+Shift+f exec alacritty -e ranger
 bindsym $mod+Shift+v exec alacritty -e vim
 bindsym $mod+Shift+z exec alacritty -e htop
 bindsym $mod+Shift+s exec flameshot full -c
+bindsym $mod+m exec choosemount
 
 # Keymap for lockscreen
 bindsym $mod+Ctrl+l exec i3lock-fancy -t " " -f Source-Code-Pro
