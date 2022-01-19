@@ -18,9 +18,6 @@ if [[ -z $VNCSESSION ]]; then
     # start dunst to enable notifications
     dunst &
 
-    #remap escape and capslock key
-    xmodmap ~/.Xmodmap
-
     #start i3 window manager or xfce depending on tty
     case $XDG_VTNR in
         1) exec i3 ;;
