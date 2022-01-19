@@ -120,7 +120,7 @@ bindsym $mod+a focus parent
 set $ws1 "1: browser"
 set $ws2 "2: email"
 set $ws3 "3: spotify"
-set $ws4 "4: python"
+set $ws4 "4: zotero"
 set $ws5 "5: slack"
 set $ws6 "6: matlab"
 set $ws7 "7:"
@@ -201,6 +201,7 @@ bindsym $mod+Shift+f exec alacritty -e ranger
 bindsym $mod+Shift+v exec alacritty -e vim
 bindsym $mod+Shift+z exec alacritty -e htop
 bindsym $mod+Shift+s exec flameshot full -c
+bindsym $mod+m exec choosemount
 
 # Keymap for lockscreen
 bindsym $mod+Ctrl+l exec i3lock-fancy -t " " -f Source-Code-Pro
@@ -219,12 +220,15 @@ for_window [class="Zotero" title="Quick Format Citation"] floating enable
 for_window [class="Zotero" title="Progress"] floating enable
 #same for zoom
 for_window [class="zoom"] floating enable
+# and for any matplotlib figure
+for_window [title="^Figure.*$"] floating enable
 
 #no more titlebars
 for_window [class=".*"] border pixel 1
 
 #colorscheme and bar config
 set $bg #282828
+set $white #fbf1c7
 set $red #cc241d
 set $green #98971a
 set $yellow #d79921
@@ -241,7 +245,7 @@ set $darkgray #1d2021
 bar {
     position top
     status_command i3status
-    font pango:Source Code Pro 9
+    font pango:Source Code Pro 10
     colors {
         # bar background color
         background $bg
