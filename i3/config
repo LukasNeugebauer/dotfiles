@@ -201,7 +201,12 @@ bindsym $mod+Shift+f exec alacritty -e ranger
 bindsym $mod+Shift+v exec alacritty -e vim
 bindsym $mod+Shift+z exec alacritty -e htop
 bindsym $mod+Shift+s exec flameshot full -c
+
+# bind shell scripts to keys
+#decide where to mount which harddrive
 bindsym $mod+m exec choosemount
+#switch quickly between American and German layout
+bindsym $mod+t exec toggle_layout
 
 # Keymap for lockscreen
 bindsym $mod+Ctrl+l exec i3lock-fancy -t " " -f Source-Code-Pro
