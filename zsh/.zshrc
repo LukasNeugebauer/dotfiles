@@ -156,6 +156,14 @@ function mcd () {
     cd $1
 }
 
+# this one is to compile latex with biber in one step
+# pbp = pdflatex-biber-pdflatex
+function pbp(){
+    pdflatex $1
+    biber ${1%.*}
+    pdflatex $1
+}
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/lukas/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
