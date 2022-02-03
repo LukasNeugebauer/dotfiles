@@ -34,6 +34,9 @@ exec --no-startup-id nm-applet
 # Pulseaudio applet for sound
 exec --no-startup-id pa-applet
 
+#battery info
+exec /home/lukas/shell_scripts/battinfo.sh
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -198,7 +201,12 @@ bindsym $mod+Shift+f exec alacritty -e ranger
 bindsym $mod+Shift+v exec alacritty -e vim
 bindsym $mod+Shift+z exec alacritty -e htop
 bindsym $mod+Shift+s exec flameshot full -c
+
+# bind shell scripts to keys
+#decide where to mount which harddrive
 bindsym $mod+m exec choosemount
+#switch quickly between American and German layout
+bindsym $mod+t exec toggle_layout
 
 # Keymap for lockscreen
 bindsym $mod+Ctrl+l exec i3lock-fancy -t " " -f Source-Code-Pro
@@ -208,8 +216,10 @@ bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show
 
 # Make sure some windows are always opened as floating, e.g. SPM and zotero plugin for google docs
-# open all MATLAB windows as floating. this mostly affects all the windows that SPM likes to open
-for_window [class="MATLAB R2020a - academic use"] floating enable
+# open all SPM windows as floating
+for_window [title=".*SPM.*"] floating enable
+# popup for selection of anatomical image
+for_window [title="Select image.*"] floating enable
 #open some zotero plugin windows as floating
 for_window [class="Zotero" title="Quick Format Citation"] floating enable
 for_window [class="Zotero" title="Progress"] floating enable
