@@ -13,7 +13,7 @@ syntax on
 "prevent encoding problems
 set encoding=utf-8
 
-"Vundle
+" manage plugins using Vundle
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -24,7 +24,7 @@ call vundle#begin()
     Plugin 'vim-scripts/indentpython.vim'
     Plugin 'ycm-core/YouCompleteMe'
     Plugin 'vim-syntastic/syntastic'
-    Plugin 'nvie/vim-flake8'
+    "Plugin 'nvie/vim-flake8' should be solved by syntastic
     Plugin 'scrooloose/nerdtree'
     Plugin 'xuhdev/vim-latex-live-preview'
     Plugin 'vim-airline/vim-airline'
@@ -65,22 +65,13 @@ set foldlevel=99
 nnoremap <space> za
 
 "fix mouse issue in alacritty
+"this fix seems to be an issue in neovim, so only for vim
 set mouse=a
-set ttymouse=sgr
+if !has('nvim')
+    set ttymouse=sgr
+endif
 
-"filetype specific things
-
-"make everything in python file compatible with PEP8
-au BufNewFile,BufRead *.py
-	\ set tabstop=4 |
-	\ set softtabstop=4 |
-	\ set shiftwidth=4 |
-	\ set textwidth=100 |
-	\ set expandtab |
-	\ set autoindent |
-	\ set fileformat=unix |
-
-"mark bad whitespace. Extremely good for python
+"mark bad whitespace in red
 highlight BadWhitespace ctermbg=red guibg=darkred
 au Bufread,BufNewFile *.py,*.pyw,*.c,*.h,*.stan match BadWhitespace /\s\+$/
 
@@ -94,3 +85,19 @@ let g:gruvbox_termcolors = 1
 let g:gruvbox_contrast_dark="medium"
 colo gruvbox
 set bg=dark
+
+"some python specific things
+"make everything in python file compatible with PEP8
+au BufNewFile,BufRead *.py
+	\ set tabstop=4 |
+	\ set softtabstop=4 |
+	\ set shiftwidth=4 |
+	\ set textwidth=88 |
+	\ set expandtab |
+	\ set autoindent |
+	\ set fileformat=unix |
+"relaxing the max line length in python code checking using flake8
+"88 corresponds to the value used by black, 10% more than 80
+"for some reason syntastic seems to ignore the flake8 config file?
+let g:syntastic_python_checker = ["flake8"]
+let g:syntastic_python_flake8_args = "--max-line-length=88"
