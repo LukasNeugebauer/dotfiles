@@ -20,6 +20,7 @@ alias draw="libreoffice --draw"
 # git aliases
 alias ga="git add"
 alias gc="git commit -m"
+alias gd="git diff"
 
 # matlab
 alias mls="/usr/bin/matlab -nodesktop -nosplash"
@@ -35,3 +36,6 @@ alias please='sudo $(fc -ln -1)'
 
 #conda alias
 alias cap="conda activate pystan"
+
+#black without writing and with color
+alias bd="black --diff --color"
