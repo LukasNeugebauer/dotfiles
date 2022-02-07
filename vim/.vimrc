@@ -96,6 +96,7 @@ au BufNewFile,BufRead *.py
 	\ set expandtab |
 	\ set autoindent |
 	\ set fileformat=unix |
+    \ set cc=88
 "relaxing the max line length in python code checking using flake8
 "88 corresponds to the value used by black, 10% more than 80
 "for some reason syntastic seems to ignore the flake8 config file?
