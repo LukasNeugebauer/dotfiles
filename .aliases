@@ -1,5 +1,5 @@
 # general linux stuff
-alias ls="ls --color=auto"
+alias ls="ls -h --color=auto"
 alias l="ls -la"
 alias grep="grep --color=auto"
 alias rm="rm -I"
