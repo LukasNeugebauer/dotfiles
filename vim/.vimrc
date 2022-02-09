@@ -102,3 +102,15 @@ au BufNewFile,BufRead *.py
 "for some reason syntastic seems to ignore the flake8 config file?
 let g:syntastic_python_checker = ["flake8"]
 let g:syntastic_python_flake8_args = "--max-line-length=88"
+
+"similar things for STAN, except that the suggested width is 2 for tabs
+au BufNewFile,BufRead *.stan
+	\ set tabstop=2 |
+	\ set softtabstop=2 |
+	\ set shiftwidth=2 |
+	\ set expandtab |
+	\ set autoindent |
+	\ set fileformat=unix |
+
+"configure youcompleteme plugin
+let g:ycm_autoclose_preview_after_completion = 1
