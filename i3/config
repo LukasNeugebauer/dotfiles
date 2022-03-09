@@ -31,8 +31,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# start blueman applet, needed for blueman manager
+exec --no-startup-id blueman-applet
 # Pulseaudio applet for sound
-exec --no-startup-id pa-applet
+# exec --no-startup-id pa-applet # now solved by bumblebee
 
 #battery info
 exec /home/lukas/shell_scripts/battinfo.sh
@@ -227,6 +229,12 @@ for_window [class="Zotero" title="Progress"] floating enable
 for_window [class="zoom"] floating enable
 # and for any matplotlib figure
 for_window [title="^Figure.*$"] floating enable
+# and triggered shells
+for_window [title="^Weather$"] floating enable
+for_window [title="pleasefloat"] floating enable
+# also make wttr.in larger
+# for_window [title="^weather$"] resize set 890 640
+# for_window [title="^weather$"] move position center
 
 #no more titlebars
 for_window [class=".*"] border pixel 1
@@ -248,9 +256,24 @@ set $darkgray #1d2021
 
 #start of bar section for i3bar
 bar {
+    status_command /usr/bin/bumblebee-status \
+        -m spotify pomodoro cpu memory disk battery pasource pasink weather datetime \
+        -p cpu.format="{:.0f}%" \
+           memory.format="{used}/{total}" \
+           disk.format="{percent:.1f}%" \
+           spotify.format="{title}" \
+           datetime.format="%a %d.%m. %H:%Mh" \
+           weather.showcity=false \
+           cpu.left-click="alacritty --title pleasefloat -e htop" \
+           memory.left-click="alacritty --title pleasefloat -e htop" \
+           cpu.theme.align="center" \
+           weather.left-click="gnome-weather" \
+        -t my-gruvbox
+#-powerline
+
     position top
-    status_command i3status
-    font pango:Source Code Pro 10
+#    status_command i3status
+    font pango:Source Code Pro 11
     colors {
         # bar background color
         background $bg
