@@ -18,14 +18,11 @@ if [[ -z $VNCSESSION ]]; then
     # start dunst to enable notifications
     dunst & disown
 
-<<<<<<< HEAD
-=======
     #set keyboard layout to de for main computer
     [[ $(hostname) = 'archlinux' ]] && setxkbmap -layout de
     #remap escape and capslock key
     setxkbmap -option caps:swapescape
 
->>>>>>> 9d9f4653c05ee831c3e209f8b3b9499aade5480f
     #start i3 window manager or xfce depending on tty
     case $XDG_VTNR in
         1) exec i3 ;;

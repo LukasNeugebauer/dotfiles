@@ -4,6 +4,7 @@ alias l="ls -la"
 alias grep="grep --color=auto"
 alias rm="rm -I"
 alias cp="cp -r"
+
 # mount hard drive for user
 alias usermount="sudo mount -o uid=$(id -u $USER),gid=$(id -g $USER)"
 alias diffy="diff -y --color=auto"
@@ -21,6 +22,7 @@ alias draw="libreoffice --draw"
 alias ga="git add"
 alias gc="git commit -m"
 alias gd="git diff"
+alias gis="git status" # gs is taken because of ghostscript
 
 # matlab
 alias mls="/usr/bin/matlab -nodesktop -nosplash"
@@ -30,12 +32,12 @@ alias wetter="curl wttr.in/Hamburg"
 
 # bad matlab habit
 alias clc=clear
-#
+
 # lol
 alias please='sudo $(fc -ln -1)'
 
-#conda alias
-alias cap="conda activate pystan"
-
 #black without writing and with color
 alias bd="black --diff --color"
+
+# 3 letters are clearly too many to type out
+alias v=vim
