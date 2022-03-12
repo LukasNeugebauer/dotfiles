@@ -1,0 +1,66 @@
+{
+	"icons": [ "paxy97", "awesome-fonts" ],
+    "colors": [
+        {
+
+            "bg": "#282828",
+            "white": "#fbf1c7",
+            "red": "#cc241d",
+            "fadedred": "#9d0006",
+            "green": "#98971a",
+            "brightgreen": "b8bb26",
+            "yellow": "#d79921",
+            "blue": "#458588",
+            "purple": "#b16286",
+            "aqua": "#689d68",
+            "gray": "#a89984",
+            "darkgray": "#1d2021"
+        }
+    ],
+	"defaults": {
+		"warning": {
+			"fg": "darkgray",
+			"bg": "fadedred"
+		},
+		"critical": {
+			"fg": "white",
+			"bg": "red"
+		},
+		"default-separators": false,
+		"separator-block-width": 0
+	},
+	"cycle": [
+		{
+			"fg": "yellow",
+			"bg": "darkgray"
+		},
+		{
+			"fg": "darkgray",
+			"bg": "yellow"
+		}
+	],
+	"battery": {
+		"charged": {
+			"fg": "darkgray",
+			"bg": "green"
+		},
+		"AC": {
+			"fg": "darkgray",
+			"bg": "green"
+		}
+	},
+	"pomodoro": {
+		"paused": {
+			"fg": "darkgray",
+			"bg": "yellow"
+		},
+		"work": {
+			"fg": "darkgray",
+			"bg": "brightgreen"
+		},
+		"break": {
+			"fg": "white",
+			"bg": "purple"
+		}
+	}
+}
