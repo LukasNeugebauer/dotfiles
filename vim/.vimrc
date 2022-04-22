@@ -18,22 +18,29 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+    "package manager
     Plugin 'gmarik/Vundle.vim'
-    Plugin 'eigenfoo/stan-vim'
-    Plugin 'tmhedberg/SimpylFold'
-    Plugin 'vim-scripts/indentpython.vim'
-    Plugin 'ycm-core/YouCompleteMe'
-    Plugin 'vim-syntastic/syntastic'
-    "Plugin 'nvie/vim-flake8' should be solved by syntastic
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'xuhdev/vim-latex-live-preview'
+    "appearance
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
     Plugin 'powerline/powerline'
-    "some additional colorschemes because why not
     Plugin 'morhetz/gruvbox'
     Plugin 'sainnhe/gruvbox-material'
     Plugin 'fcpg/vim-fahrenheit'
+    "general vim stuff, folding, indentation, etc.
+    Plugin 'tmhedberg/SimpylFold'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'tpope/vim-commentary'
+    "python specific
+    Plugin 'vim-scripts/indentpython.vim'
+    Plugin 'ycm-core/YouCompleteMe'
+    Plugin 'vim-syntastic/syntastic'
+    "latex specific
+    Plugin 'xuhdev/vim-latex-live-preview'
+    "stan specific
+    Plugin 'eigenfoo/stan-vim'
+    "javascript specific
+    Plugin 'pangloss/vim-javascript'
 call vundle#end()
 filetype plugin indent on
 
