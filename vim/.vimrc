@@ -31,16 +31,15 @@ call vundle#begin()
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'scrooloose/nerdtree'
     Plugin 'tpope/vim-commentary'
-    "python specific
-    Plugin 'vim-scripts/indentpython.vim'
-    Plugin 'ycm-core/YouCompleteMe'
+    "catch-all programming packages for syntax checking, highlighting,
+    "indentation, etc.
+    Plugin 'sheerun/vim-polyglot'
     Plugin 'vim-syntastic/syntastic'
+    Plugin 'tabnine/YouCompleteMe'
     "latex specific
     Plugin 'xuhdev/vim-latex-live-preview'
     "stan specific
     Plugin 'eigenfoo/stan-vim'
-    "javascript specific
-    Plugin 'pangloss/vim-javascript'
 call vundle#end()
 filetype plugin indent on
 
