@@ -63,7 +63,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
 # trying rofi instead
-bindsym $mod+d exec "rofi -show combi"
+bindsym $mod+d exec "rofi -show combi -show-icons"
 
 # change focus
 bindsym $mod+h focus left
@@ -119,11 +119,11 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: browser"
 set $ws2 "2: email"
-set $ws3 "3: spotify"
-set $ws4 "4: zotero"
-set $ws5 "5: slack"
-set $ws6 "6: matlab"
-set $ws7 "7:"
+set $ws3 "3: zotero"
+set $ws4 "4: python"
+set $ws5 "5: matlab"
+set $ws6 "6"
+set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
@@ -209,7 +209,9 @@ bindsym $mod+m exec choosemount
 bindsym $mod+t exec toggle_layout
 
 # Keymap for lockscreen
-bindsym $mod+Ctrl+l exec i3lock-fancy -t " " -f Source-Code-Pro
+# bindsym $mod+Ctrl+l exec i3lock-fancy -t " " -f Source-Code-Pro
+# bindsym $mod+Ctrl+l exec i3lock-multimonitor -i /home/lukas/pics/bg/pacman.png
+bindsym $mod+Ctrl+l exec i3lock-multimonitor -i /home/lukas/pics/bg/gdimp.jpg
 
 # Move windows to and from scratchpad
 bindsym $mod+minus move scratchpad

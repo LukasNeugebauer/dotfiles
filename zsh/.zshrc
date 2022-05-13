@@ -17,7 +17,7 @@ setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
 
 #set some variables
-PATH="/usr/local/bin:/usr/local/sbin/:~/shell_scripts:$PATH"
+PATH="/usr/local/bin:/usr/local/sbin/:$HOME/shell_scripts:$PATH"
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=1000
 SAVEHIST=1000

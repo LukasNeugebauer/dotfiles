@@ -4,5 +4,5 @@
 # 3) are on tty 1-3
 
 if [[ -z $SSH_CONNECTION ]] && systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -le 3 ]]; then
-  exec startx
+  exec xinit
 fi
