@@ -1,3 +1,10 @@
+"configuration file for vim/neovim
+"Lukas Neugebauer
+
+"define leader key to be alt
+"not much used as of yet, but will do in the future
+let mapleader = ","
+
 "general appearance
 set nu
 set showmatch
@@ -13,6 +20,9 @@ syntax on
 "prevent encoding problems
 set encoding=utf-8
 
+"fix weird syntax highlighting problems in html/js files
+autocmd BufEnter * syntax sync fromstart
+
 " manage plugins using Vundle
 set nocompatible
 filetype off
@@ -27,6 +37,7 @@ call vundle#begin()
     Plugin 'morhetz/gruvbox'
     Plugin 'sainnhe/gruvbox-material'
     Plugin 'fcpg/vim-fahrenheit'
+    Plugin 'frazrepo/vim-rainbow'
     "general vim stuff, folding, indentation, etc.
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'scrooloose/nerdtree'
@@ -69,6 +80,7 @@ nnoremap <C-y> "+gP
 set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
+vnoremap <space> za
 
 "fix mouse issue in alacritty
 "this fix seems to be an issue in neovim, so only for vim
@@ -120,3 +132,7 @@ au BufNewFile,BufRead *.stan
 
 "configure youcompleteme plugin
 let g:ycm_autoclose_preview_after_completion = 1
+
+"some shortcuts for NERDTree
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
