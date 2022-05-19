@@ -22,6 +22,8 @@ set encoding=utf-8
 
 "fix weird syntax highlighting problems in html/js files
 autocmd BufEnter * syntax sync fromstart
+"also map to <leader>s to fix ad hoc
+nnoremap <leader>s :syntax sync fromstart<CR>
 
 " manage plugins using Vundle
 set nocompatible
@@ -91,7 +93,7 @@ endif
 
 "mark bad whitespace in red
 highlight BadWhitespace ctermbg=red guibg=darkred
-au Bufread,BufNewFile *m,*.py,*.pyw,*.c,*.h,*.stan match BadWhitespace /\s\+$/
+au Bufread,BufNewFile *html,*js,*m,*.py,*.pyw,*.c,*.h,*.stan match BadWhitespace /\s\+$/
 
 " automatically deletes all trailing whitespace and newlines at end of file on save.
 autocmd BufWritePre * %s/\s\+$//e
