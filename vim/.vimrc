@@ -135,6 +135,10 @@ au BufNewFile,BufRead *.stan
 "configure youcompleteme plugin
 let g:ycm_autoclose_preview_after_completion = 1
 
+"configure vim-latex-live-preview
+let g:livepreview_use_biber = 1
+let g:livepreview_cursorhold_recompile = 0
+
 "some shortcuts for NERDTree
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
