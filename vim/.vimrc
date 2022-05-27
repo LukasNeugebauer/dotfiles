@@ -132,11 +132,13 @@ au BufNewFile,BufRead *.stan
 	\ set autoindent |
 	\ set fileformat=unix |
 
+"line wrapping for latex
+au BufNewFile,BufRead *.tex set textwidth=100
+
 "configure youcompleteme plugin
 let g:ycm_autoclose_preview_after_completion = 1
 
 "configure vim-latex-live-preview
-let g:livepreview_use_biber = 1
 let g:livepreview_cursorhold_recompile = 0
 
 "some shortcuts for NERDTree

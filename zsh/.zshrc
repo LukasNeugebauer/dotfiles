@@ -143,11 +143,12 @@ function mcd () {
     cd $1
 }
 
-# this one is to compile latex with biber in one step
-# pbp = pdflatex-biber-pdflatex
-function pbp(){
+# this one is to compile latex with bibtex in one step
+# pbpp = pdflatex-bibtex-pdflatex-pdflatex
+function pbpp(){
     pdflatex $1
-    biber ${1%.*}
+    bibtex ${1%.*}
+    pdflatex $1
     pdflatex $1
 }
 
