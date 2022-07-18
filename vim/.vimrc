@@ -1,7 +1,7 @@
 "configuration file for vim/neovim
 "Lukas Neugebauer
 
-"define leader key to be alt
+"define leader key to be comma
 "not much used as of yet, but will do in the future
 let mapleader = ","
 
@@ -130,15 +130,25 @@ au BufNewFile,BufRead *.stan
 	\ set shiftwidth=2 |
 	\ set expandtab |
 	\ set autoindent |
-	\ set fileformat=unix |
+	\ set fileformat=unix
 
-"line wrapping for latex
-au BufNewFile,BufRead *.tex set textwidth=100
+" some settings for latex
+au BufNewFile,BufRead *.tex
+    \ set textwidth=100 |
+    \ set cc=100 |
+    \ set spelllang=en_gb spell
+    "\ set fileformat=latex |
+" enable spell checking automatically
+autocmd BufNewFile,BufRead,BufWritePre *.tex syntax spell toplevel
+
+
+"set cc to 90 characters in matlab files
+au BufNewFile,BufRead *.m set cc=90
 
 "configure youcompleteme plugin
 let g:ycm_autoclose_preview_after_completion = 1
 
-"configure vim-latex-live-preview
+"configure vim-latex-live-preview to not recompile ALL the time
 let g:livepreview_cursorhold_recompile = 0
 
 "some shortcuts for NERDTree
