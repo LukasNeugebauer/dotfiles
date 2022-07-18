@@ -143,13 +143,34 @@ function mcd () {
     cd $1
 }
 
+# some functions for latex
+function pbpp(){
 # this one is to compile latex with bibtex in one step
 # pbpp = pdflatex-bibtex-pdflatex-pdflatex
-function pbpp(){
     pdflatex $1
     bibtex ${1%.*}
     pdflatex $1
     pdflatex $1
+}
+
+function clearlatex(){
+# delete all the results from latex compilation except for the pdf
+# this is to make sure you're not accidently deleting other pdfs
+# this can be run in the present directory or a directory can be given as a
+  #default to pwd
+  if [[ -n $1 ]]; then
+    newpath=$1
+  else
+    newpath=$(pwd)
+  fi
+  oldpath=$(pwd)
+  cd $newpath
+  # define file endings that will be deleted
+  declare -a endings=("aux" "bcf" "log" "lof" "lot" "run.xml" "toc")
+  for ending in $endings; do
+    [[ -n "*.$ending" ]] && rm *.$ending
+  done
+  cd $oldpath
 }
 
 # completely useless but looks cool and impresses normies
