@@ -209,9 +209,9 @@ bindsym $mod+m exec choosemount
 bindsym $mod+t exec toggle_layout
 
 # Keymap for lockscreen
-# bindsym $mod+Ctrl+l exec i3lock-fancy -t " " -f Source-Code-Pro
+bindsym $mod+Ctrl+l exec i3lock-fancy -t " " -f Source-Code-Pro
 # bindsym $mod+Ctrl+l exec i3lock-multimonitor -i /home/lukas/pics/bg/pacman.png
-bindsym $mod+Ctrl+l exec i3lock-multimonitor -i /home/lukas/pics/bg/gdimp.jpg
+# bindsym $mod+Ctrl+l exec i3lock-multimonitor -i /home/lukas/pics/bg/gdimp.jpg
 
 # Move windows to and from scratchpad
 bindsym $mod+minus move scratchpad
