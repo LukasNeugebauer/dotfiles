@@ -1,7 +1,7 @@
 "configuration file for vim/neovim
 "Lukas Neugebauer
 
-"define leader key to be alt
+"define leader key to be comma
 "not much used as of yet, but will do in the future
 let mapleader = ","
 
@@ -22,6 +22,8 @@ set encoding=utf-8
 
 "fix weird syntax highlighting problems in html/js files
 autocmd BufEnter * syntax sync fromstart
+"also map to <leader>s to fix ad hoc
+nnoremap <leader>s :syntax sync fromstart<CR>
 
 " manage plugins using Vundle
 set nocompatible
@@ -91,7 +93,7 @@ endif
 
 "mark bad whitespace in red
 highlight BadWhitespace ctermbg=red guibg=darkred
-au Bufread,BufNewFile *m,*.py,*.pyw,*.c,*.h,*.stan match BadWhitespace /\s\+$/
+au Bufread,BufNewFile *html,*js,*m,*.py,*.pyw,*.c,*.h,*.stan match BadWhitespace /\s\+$/
 
 " automatically deletes all trailing whitespace and newlines at end of file on save.
 autocmd BufWritePre * %s/\s\+$//e
@@ -128,10 +130,26 @@ au BufNewFile,BufRead *.stan
 	\ set shiftwidth=2 |
 	\ set expandtab |
 	\ set autoindent |
-	\ set fileformat=unix |
+	\ set fileformat=unix
+
+" some settings for latex
+au BufNewFile,BufRead *.tex
+    \ set textwidth=100 |
+    \ set cc=100 |
+    \ set spelllang=en_gb spell
+    "\ set fileformat=latex |
+" enable spell checking automatically
+autocmd BufNewFile,BufRead,BufWritePre *.tex syntax spell toplevel
+
+
+"set cc to 90 characters in matlab files
+au BufNewFile,BufRead *.m set cc=90
 
 "configure youcompleteme plugin
 let g:ycm_autoclose_preview_after_completion = 1
+
+"configure vim-latex-live-preview to not recompile ALL the time
+let g:livepreview_cursorhold_recompile = 0
 
 "some shortcuts for NERDTree
 nnoremap <C-n> :NERDTree<CR>
