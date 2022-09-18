@@ -136,3 +136,6 @@ let g:ycm_autoclose_preview_after_completion = 1
 "some shortcuts for NERDTree
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
+
+"configure latex-preview with biber
+let g:livepreview_use_biber = 1
