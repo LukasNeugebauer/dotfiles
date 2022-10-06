@@ -148,7 +148,7 @@ function pbpp(){
 # this one is to compile latex with bibtex in one step
 # pbpp = pdflatex-bibtex-pdflatex-pdflatex
     pdflatex $1
-    bibtex ${1%.*}
+    biber ${1%.*}
     pdflatex $1
     pdflatex $1
 }
@@ -166,11 +166,36 @@ function clearlatex(){
   oldpath=$(pwd)
   cd $newpath
   # define file endings that will be deleted
-  declare -a endings=("aux" "bcf" "log" "lof" "lot" "run.xml" "toc")
+  declare -a endings=("aux" "bcf" "log" "lof" "lot" "run.xml" "toc" "bbl" "blg")
   for ending in $endings; do
-    [[ -n "*.$ending" ]] && rm *.$ending
+    [[ -n "*.$ending" ]] && rm -f *.$ending
   done
   cd $oldpath
+}
+
+function bib_search_title(){
+# search the identifiers of a bibtex file for a pattern
+# or in other words: what was this shepard paper called in my bibfile again?
+    [[ -z $1 ]] && echo "Pattern is mandatory" && return 1
+    pattern=$1
+    if [[ -n $2 ]]; then
+        bibfile=$2
+    else
+        n_files=$(echo *.bib | wc -w)
+        if [[ $n_files -gt 1 ]]; then
+            echo "Too many bib-files, specify one please." && return 1
+        elif [[ $n_files -eq 0 ]]; then
+            echo "No bib file found." && return 1
+        fi
+        bibfile=$(echo *bib)
+    fi
+    identifiers=$(sed -n 's/@.*{\(.*\),/\1/p' $bibfile)
+    results=$(echo $identifiers | grep $pattern)
+    if [[ -z $results ]]; then
+        echo "No results :(" && return 1
+    else
+        echo $results && return 0
+    fi
 }
 
 # completely useless but looks cool and impresses normies
@@ -189,4 +214,8 @@ else
     fi
 fi
 unset __conda_setup
+
+if [ -f "/home/lukas/miniconda3/etc/profile.d/mamba.sh" ]; then
+    . "/home/lukas/miniconda3/etc/profile.d/mamba.sh"
+fi
 # <<< conda initialize <<<
