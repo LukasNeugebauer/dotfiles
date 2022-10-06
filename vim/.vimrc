@@ -161,6 +161,3 @@ set wildignore+=*.aux,*.bcf,*.log,*.lof,*.lot,*.run.xml,*.toc,*.bbl,*.blg
 let NERDTreeRespectWildIgnore=1
 " also open NERDTree on startup
 autocmd VimEnter * NERDTree | wincmd p
-
-"configure latex-preview with biber
-let g:livepreview_use_biber = 1
