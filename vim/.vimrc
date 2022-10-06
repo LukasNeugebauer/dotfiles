@@ -15,7 +15,6 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 let python_highlight_all=1
-syntax on
 
 "prevent encoding problems
 set encoding=utf-8
@@ -26,8 +25,8 @@ autocmd BufEnter * syntax sync fromstart
 nnoremap <leader>s :syntax sync fromstart<CR>
 
 " manage plugins using Vundle
-set nocompatible
 filetype off
+set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
     "package manager
@@ -55,6 +54,7 @@ call vundle#begin()
     Plugin 'eigenfoo/stan-vim'
 call vundle#end()
 filetype plugin indent on
+syntax on
 
 "keyboard remappings
 
@@ -150,7 +150,14 @@ let g:ycm_autoclose_preview_after_completion = 1
 
 "configure vim-latex-live-preview to not recompile ALL the time
 let g:livepreview_cursorhold_recompile = 0
+"and to use biber instead of bibtex
+let g:livepreview_use_biber = 1
 
 "some shortcuts for NERDTree
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
+"ignore output of pdflatex in nerdtree
+set wildignore+=*.aux,*.bcf,*.log,*.lof,*.lot,*.run.xml,*.toc,*.bbl,*.blg
+let NERDTreeRespectWildIgnore=1
+" also open NERDTree on startup
+autocmd VimEnter * NERDTree | wincmd p
