@@ -67,6 +67,10 @@ let g:rainbow_active=1
 let g:gruvbox_transparent_background = 0
 let g:gruvbox_termcolors = 1
 let g:gruvbox_contrast_dark="medium"
+" define version controlled path for ultisnips
+let g:UltiSnipsSnippetDirectories=["~/.config/vim/snippets"]
+" open vertical split to edit snippet file
+let g:UltiSnipsEditSplit="vertical"
 
 "===============================================================================
 " 2. GENERAL CONFIGURATION
@@ -83,7 +87,6 @@ set shiftwidth=4
 set encoding=utf-8
 let python_highlight_all=1
 "define languages for spell checking
-set spelllang=en,de
 "define leader key to be comma
 let mapleader = ","
 "set up folding
@@ -107,12 +110,9 @@ endif
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritepre * %s/\n\+\%$//e
 
-" highlighting
-"mark bad whitespace in red
-highlight BadWhitespace ctermbg=red guibg=darkred
-au Bufread,BufNewFile * match BadWhitespace /\s\+$/
-"mark misspelled words in white on red
-highlight BadSpell ctermbg=red ctermfg=white
+" set up spell checks
+set spelllang=en
+highlight BadSpell ctermbg=red guibg=red ctermfg=white guifg=white
 
 " open NERDTree on startup
 autocmd VimEnter * NERDTree | wincmd p
@@ -137,12 +137,12 @@ vnoremap <C-c> "+y
     " cut, same except delete selection in vim
 vnoremap <C-x> "+x
     " paste -> change selection, exit insert mode, paste special buffer
-    " I used y instead of v to keep ctrl+v for visual block mode, y is
-    " consistent with yanking
-vnoremap <C-y> c<ESC>"+P
+    " I used y instead of v to keep ctrl+v for visual block mode, p
+    " consistent with pasting in vim
+vnoremap <C-p> c<ESC>"+P
 "normal mode, no copy, because what would you copy
     " paste after to mimic expected behavior
-nnoremap <C-y> "+gP
+nnoremap <C-p> "+gP
 
 " use space to open and close folds
 nnoremap <space> za
@@ -169,6 +169,17 @@ nnoremap <leader>a zg
 "show suggesteions
 nnoremap <leader>p z=
 
+" these are technically configurations, but since they define keys, I'll put
+" them here
+" define trigger for UltiSnips, tab is used by youcompleteme
+" alt key is weird, here's a workaround
+let g:UltiSnipsExpandTrigger="<C-s>"
+" these are the defaults, but I put them here as a reminder
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+
+" get rid of annoying highlights in normal mode
+nnoremap <Backspace> :nohl<CR>
 
 "===============================================================================
 " 4. FILETYPE SPECIFIC SETTINGS
