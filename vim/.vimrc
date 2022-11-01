@@ -1,30 +1,19 @@
-"configuration file for vim/neovim
+" Configuration file for vim/neovim
+" Is structure into the following parts
+"   1. Plugins: Load plugins using Vundle and configure them
+"   2. General configuration: Settings that are filetype independent
+"   3. Keyboard remappings: define some shortcuts
+"   4. Filetype specific settings: Deal with the peculiarities of python, stan
+"       and matlab
 "Lukas Neugebauer
 
-"define leader key to be comma
-"not much used as of yet, but will do in the future
-let mapleader = ","
 
-"general appearance
-set nu
-set showmatch
-set noswapfile
-set splitbelow
-set splitright
-set expandtab
-set tabstop=4
-set shiftwidth=4
-let python_highlight_all=1
+"===============================================================================
+" 1. PLUGINS
+"===============================================================================
 
-"prevent encoding problems
-set encoding=utf-8
+" load plugins
 
-"fix weird syntax highlighting problems in html/js files
-autocmd BufEnter * syntax sync fromstart
-"also map to <leader>s to fix ad hoc
-nnoremap <leader>s :syntax sync fromstart<CR>
-
-" manage plugins using Vundle
 filetype off
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -34,10 +23,7 @@ call vundle#begin()
     "appearance
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'powerline/powerline'
     Plugin 'morhetz/gruvbox'
-    Plugin 'sainnhe/gruvbox-material'
-    Plugin 'fcpg/vim-fahrenheit'
     Plugin 'frazrepo/vim-rainbow'
     "general vim stuff, folding, indentation, etc.
     Plugin 'tmhedberg/SimpylFold'
@@ -48,15 +34,95 @@ call vundle#begin()
     Plugin 'sheerun/vim-polyglot'
     Plugin 'vim-syntastic/syntastic'
     Plugin 'tabnine/YouCompleteMe'
+    "checking out snippets
+    Plugin 'SirVer/ultisnips'
     "latex specific
     Plugin 'xuhdev/vim-latex-live-preview'
     "stan specific
     Plugin 'eigenfoo/stan-vim'
+    "undistracted writing
+    Plugin 'junegunn/goyo.vim'
+    Plugin 'junegunn/limelight.vim'
 call vundle#end()
 filetype plugin indent on
 syntax on
 
-"keyboard remappings
+" and configure them
+
+"settings for goyo and limelight
+let g:goyo_width=120
+let g:limelight_default_coefficient=0.6
+let g:limelight_conceal_ctermfg='LightGray'
+"configure youcompleteme plugin
+let g:ycm_autoclose_preview_after_completion = 1
+"configure vim-latex-live-preview
+let g:livepreview_cursorhold_recompile = 0
+let g:livepreview_use_biber = 1
+"ignore output of pdflatex in nerdtree
+set wildignore+=*.aux,*.bcf,*.log,*.lof,*.lot,*.run.xml,*.toc,*.bbl,*.blg
+let NERDTreeRespectWildIgnore=1
+" activate color matching for opening and closing parantheses
+let g:rainbow_active=1
+" configure colorscheme
+let g:gruvbox_transparent_background = 0
+let g:gruvbox_termcolors = 1
+let g:gruvbox_contrast_dark="medium"
+
+"===============================================================================
+" 2. GENERAL CONFIGURATION
+"===============================================================================
+
+set nu
+set showmatch
+set noswapfile
+set splitbelow
+set splitright
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set encoding=utf-8
+let python_highlight_all=1
+"define languages for spell checking
+set spelllang=en,de
+"define leader key to be comma
+let mapleader = ","
+"set up folding
+set foldmethod=indent
+set foldlevel=99
+" define colorscheme
+colo gruvbox
+set bg=dark
+
+"fix weird syntax highlighting problems in html/js files
+autocmd BufEnter * syntax sync fromstart
+
+"fix mouse issue in alacritty
+"this fix seems to be an issue in neovim, so only for vim
+set mouse=a
+if !has('nvim')
+    set ttymouse=sgr
+endif
+
+" automatically deletes all trailing whitespace and newlines at end of file on save.
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritepre * %s/\n\+\%$//e
+
+" highlighting
+"mark bad whitespace in red
+highlight BadWhitespace ctermbg=red guibg=darkred
+au Bufread,BufNewFile * match BadWhitespace /\s\+$/
+"mark misspelled words in white on red
+highlight BadSpell ctermbg=red ctermfg=white
+
+" open NERDTree on startup
+autocmd VimEnter * NERDTree | wincmd p
+
+"===============================================================================
+" 3. KEYBOARD REMAPPINGS
+"===============================================================================
+
+" Fix weird highlighting stuff with keymap
+nnoremap <leader>s :syntax sync fromstart<CR>
 
 " switch between splits
 nnoremap <C-J> <C-W><C-J>
@@ -78,36 +144,38 @@ vnoremap <C-y> c<ESC>"+P
     " paste after to mimic expected behavior
 nnoremap <C-y> "+gP
 
-"set up folding
-set foldmethod=indent
-set foldlevel=99
+" use space to open and close folds
 nnoremap <space> za
 vnoremap <space> za
 
-"fix mouse issue in alacritty
-"this fix seems to be an issue in neovim, so only for vim
-set mouse=a
-if !has('nvim')
-    set ttymouse=sgr
-endif
+"toggle writing mode
+nnoremap <leader>wm :Goyo<CR> :Limelight!!<CR> :set linebreak<CR>
 
-"mark bad whitespace in red
-highlight BadWhitespace ctermbg=red guibg=darkred
-au Bufread,BufNewFile *html,*js,*m,*.py,*.pyw,*.c,*.h,*.stan match BadWhitespace /\s\+$/
+"some shortcuts for NERDTree
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
 
-" automatically deletes all trailing whitespace and newlines at end of file on save.
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritepre * %s/\n\+\%$//e
+"remappings for spell check
+"remap looking for bad words, always ignore rare words
+"enable spell checking with F6
+nnoremap <F6> :set spell!<CR>
+"using leader for this as alt is weird
+"forward seach
+nnoremap <leader>f ]S
+"backwords search
+nnoremap <leader>b [S
+"append to whitelist
+nnoremap <leader>a zg
+"show suggesteions
+nnoremap <leader>p z=
 
-"colorscheme, is depending on vundle, so needs to be after that
-let g:gruvbox_transparent_background = 0
-let g:gruvbox_termcolors = 1
-let g:gruvbox_contrast_dark="medium"
-colo gruvbox
-set bg=dark
 
-"some python specific things
-"make everything in python file compatible with PEP8
+"===============================================================================
+" 4. FILETYPE SPECIFIC SETTINGS
+"===============================================================================
+
+" Python
+" make everything in python file compatible with PEP8
 au BufNewFile,BufRead *.py
 	\ set tabstop=4 |
 	\ set softtabstop=4 |
@@ -123,7 +191,7 @@ au BufNewFile,BufRead *.py
 let g:syntastic_python_checker = ["flake8"]
 let g:syntastic_python_flake8_args = "--max-line-length=88"
 
-"similar things for STAN, except that the suggested width is 2 for tabs
+" STAN
 au BufNewFile,BufRead *.stan
 	\ set tabstop=2 |
 	\ set softtabstop=2 |
@@ -132,32 +200,17 @@ au BufNewFile,BufRead *.stan
 	\ set autoindent |
 	\ set fileformat=unix
 
-" some settings for latex
+" Latex
+" hard wrapping lines
+" enable spell checking automatically
 au BufNewFile,BufRead *.tex
     \ set textwidth=100 |
+    \ set linebreak |
     \ set cc=100 |
-    \ set spelllang=en_gb spell
-    "\ set fileformat=latex |
-" enable spell checking automatically
-autocmd BufNewFile,BufRead,BufWritePre *.tex syntax spell toplevel
+    \ set spell!
 
-
+" MATLAB/Octave
 "set cc to 90 characters in matlab files
 au BufNewFile,BufRead *.m set cc=90
-
-"configure youcompleteme plugin
-let g:ycm_autoclose_preview_after_completion = 1
-
-"configure vim-latex-live-preview to not recompile ALL the time
-let g:livepreview_cursorhold_recompile = 0
-"and to use biber instead of bibtex
-let g:livepreview_use_biber = 1
-
-"some shortcuts for NERDTree
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <leader>n :NERDTreeFocus<CR>
-"ignore output of pdflatex in nerdtree
-set wildignore+=*.aux,*.bcf,*.log,*.lof,*.lot,*.run.xml,*.toc,*.bbl,*.blg
-let NERDTreeRespectWildIgnore=1
-" also open NERDTree on startup
-autocmd VimEnter * NERDTree | wincmd p
+"and fix comment sign, vim reads matlab as octave
+autocmd Filetype octave setlocal commentstring=% %s
