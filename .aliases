@@ -40,8 +40,8 @@ alias please='sudo $(fc -ln -1)'
 alias bd="black --diff --color"
 
 # switching to neovim because it has better mapping possibilities
-alias v=nvim
-alias vim=nvim
+alias v=vim
+#alias vim=nvim
 
 # create large monitor from 2
 alias dualmonitor="xrandr --setmonitor dualmonitor auto DP-0,HDMI-0"
