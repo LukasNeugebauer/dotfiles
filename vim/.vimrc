@@ -224,4 +224,4 @@ au BufNewFile,BufRead *.tex
 "set cc to 90 characters in matlab files
 au BufNewFile,BufRead *.m set cc=90
 "and fix comment sign, vim reads matlab as octave
-autocmd Filetype octave setlocal commentstring=% %s
+autocmd Filetype octave setlocal commentstring=%\ %s
