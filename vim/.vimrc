@@ -47,6 +47,7 @@ call vundle#end()
 filetype plugin indent on
 syntax on
 
+
 " and configure them
 
 "settings for goyo and limelight
