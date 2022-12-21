@@ -1,5 +1,5 @@
 " Configuration file for vim/neovim
-" Is structure into the following parts
+
 "   1. Plugins: Load plugins using Vundle and configure them
 "   2. General configuration: Settings that are filetype independent
 "   3. Keyboard remappings: define some shortcuts
@@ -33,7 +33,8 @@ call vundle#begin()
     "indentation, etc.
     Plugin 'sheerun/vim-polyglot'
     Plugin 'vim-syntastic/syntastic'
-    Plugin 'tabnine/YouCompleteMe'
+    "Plugin 'tabnine/YouCompleteMe'
+    Plugin 'github/copilot.vim'
     "checking out snippets
     Plugin 'SirVer/ultisnips'
     "latex specific
@@ -113,7 +114,8 @@ autocmd BufWritepre * %s/\n\+\%$//e
 
 " set up spell checks
 set spelllang=en
-highlight BadSpell ctermbg=red guibg=red ctermfg=white guifg=white
+highlight SpellBad ctermbg=red ctermfg=white
+"guibg=red guifg=white
 
 " open NERDTree on startup
 autocmd VimEnter * NERDTree | wincmd p
