@@ -664,8 +664,13 @@ if s:tex_fast =~# 'r'
   syn region texRefOption	contained	matchgroup=texDelimiter start='\[' end=']'		contains=@texRefGroup,texRefZone	nextgroup=texRefOption,texCite
   syn region texCite		contained	matchgroup=texDelimiter start='{' end='}'		contains=@texRefGroup,texRefZone,texCite
 endif
-syn match  texRefZone		'\\cite\%([tp]\*\=\)\=\>' nextgroup=texRefOption,texCite
+syn match  texStatement		'\\cite\%([tp]\*\=\)\=\>' nextgroup=texRefOption,texCite
 syn match  texStatement		'\\\(paren\|text\|\)cite\%([tp]\*\=\)\=\>' nextgroup=texRefOption,texCite
+syn match  texStatement		'\\cite\(year\|author\|\)\%([tp]\*\=\)\=\>' nextgroup=texRefOption,texCite
+
+" not really a ref, but will treat as such because I'm lazy
+syn match  texStatement		'\\ac\%([slf]\*\=\)\=\>' nextgroup=texRefOption,texCite
+
 
 " Handle (re)newcommand, (re)newenvironment : {{{1
 syn match  texNewCmd				"\\\%(re\)\=newcommand\>"		nextgroup=texCmdName skipwhite skipnl
