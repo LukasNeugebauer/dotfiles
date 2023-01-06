@@ -12,6 +12,11 @@ snippet be "generic framing" b
 $3
 endsnippet
 
+snippet en "enumerate" b
+\begin{enumerate}
+	\item $1
+\end{enumerate}
+
 snippet p "paragraph" b
 \paragraph
 endsnippet
@@ -26,4 +31,33 @@ endsnippet
 
 snippet ti "italic text"
 \textit{$1}
+endsnippet
+
+# snippets for acro package
+
+snippet dfa "define an acronym" b
+\DefineAcronym{$1}{
+	short = {$2},
+	long = {$3}
+}
+endsnippet
+
+snippet a "insert acronym"
+\ac{$1}
+endsnippet
+
+# quickly format epigraph
+snippet epi "epigraph" b
+\begin{epigraph}
+	\textit{$1}
+}{$2}
+endsnippet
+
+# citations
+snippet tc "text citation"
+\textcite{$1}
+endsnippet
+
+snippet pc "parenthetical citation"
+\parencite{$1}
 endsnippet

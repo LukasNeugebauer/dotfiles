@@ -73,6 +73,13 @@ let g:gruvbox_contrast_dark="medium"
 let g:UltiSnipsSnippetDirectories=["~/.config/vim/snippets"]
 " open vertical split to edit snippet file
 let g:UltiSnipsEditSplit="vertical"
+" ignore annoying warnings in latex
+let g:syntastic_tex_lacheck_quiet_messages = { 'regex': '\Vpossible unwanted space at' }
+"relaxing the max line length in python code checking using flake8
+"88 corresponds to the value used by black, 10% more than 80
+let g:syntastic_python_checker = ["flake8"]
+let g:syntastic_python_flake8_args = "--max-line-length=88"
+
 
 "===============================================================================
 " 2. GENERAL CONFIGURATION
@@ -119,6 +126,9 @@ highlight SpellBad ctermbg=red ctermfg=white
 
 " open NERDTree on startup
 autocmd VimEnter * NERDTree | wincmd p
+
+" open all .tex files as filetype "tex", not "plaintex"
+let g:tex_flavor = "latex"
 
 "===============================================================================
 " 3. KEYBOARD REMAPPINGS
@@ -199,11 +209,6 @@ au BufNewFile,BufRead *.py
 	\ set autoindent |
 	\ set fileformat=unix |
     \ set cc=88
-"relaxing the max line length in python code checking using flake8
-"88 corresponds to the value used by black, 10% more than 80
-"for some reason syntastic seems to ignore the flake8 config file?
-let g:syntastic_python_checker = ["flake8"]
-let g:syntastic_python_flake8_args = "--max-line-length=88"
 
 " STAN
 au BufNewFile,BufRead *.stan
@@ -217,6 +222,7 @@ au BufNewFile,BufRead *.stan
 " Latex
 " hard wrapping lines
 " enable spell checking automatically
+" ignore acronyms
 au BufNewFile,BufRead *.tex
     \ set textwidth=100 |
     \ set linebreak |
