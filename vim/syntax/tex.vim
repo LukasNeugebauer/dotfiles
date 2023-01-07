@@ -665,11 +665,13 @@ if s:tex_fast =~# 'r'
   syn region texCite		contained	matchgroup=texDelimiter start='{' end='}'		contains=@texRefGroup,texRefZone,texCite
 endif
 syn match  texStatement		'\\cite\%([tp]\*\=\)\=\>' nextgroup=texRefOption,texCite
+
+" these are added by me
 syn match  texStatement		'\\\(paren\|text\|\)cite\%([tp]\*\=\)\=\>' nextgroup=texRefOption,texCite
 syn match  texStatement		'\\cite\(year\|author\|\)\%([tp]\*\=\)\=\>' nextgroup=texRefOption,texCite
 
 " not really a ref, but will treat as such because I'm lazy
-syn match  texStatement		'\\ac\%([slf]\*\=\)\=\>' nextgroup=texRefOption,texCite
+syn match  texStatement		'\\[Aa]c\%([slfusert]\*\=\)\=\>' nextgroup=texRefOption,texCite
 
 
 " Handle (re)newcommand, (re)newenvironment : {{{1

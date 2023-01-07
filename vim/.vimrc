@@ -29,9 +29,9 @@ call vundle#begin()
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'scrooloose/nerdtree'
     Plugin 'tpope/vim-commentary'
-    "catch-all programming packages for syntax checking, highlighting,
-    "indentation, etc.
+    "catch-all programming package highlighting, indentation, etc.
     Plugin 'sheerun/vim-polyglot'
+    " syntax checking
     Plugin 'vim-syntastic/syntastic'
     "Plugin 'tabnine/YouCompleteMe'
     Plugin 'github/copilot.vim'
@@ -44,6 +44,8 @@ call vundle#begin()
     "undistracted writing
     Plugin 'junegunn/goyo.vim'
     Plugin 'junegunn/limelight.vim'
+    " preview changes and searches
+    Plugin 'markonm/traces.vim'
 call vundle#end()
 filetype plugin indent on
 syntax on
@@ -74,7 +76,9 @@ let g:UltiSnipsSnippetDirectories=["~/.config/vim/snippets"]
 " open vertical split to edit snippet file
 let g:UltiSnipsEditSplit="vertical"
 " ignore annoying warnings in latex
-let g:syntastic_tex_lacheck_quiet_messages = { 'regex': '\Vpossible unwanted space at' }
+let g:syntastic_tex_chktex_quiet_messages = {'regex': [
+            \ '\Vpossible unwanted space at',
+            \ 'Delete this space to maintain correct pagereferences']}
 "relaxing the max line length in python code checking using flake8
 "88 corresponds to the value used by black, 10% more than 80
 let g:syntastic_python_checker = ["flake8"]
@@ -169,7 +173,6 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
 
 "remappings for spell check
-"remap looking for bad words, always ignore rare words
 "enable spell checking with F6
 nnoremap <F6> :set spell!<CR>
 "using leader for this as alt is weird
@@ -179,12 +182,12 @@ nnoremap <leader>f ]S
 nnoremap <leader>b [S
 "append to whitelist
 nnoremap <leader>a zg
-"show suggesteions
+"show suggestions
 nnoremap <leader>p z=
 
 " these are technically configurations, but since they define keys, I'll put
 " them here
-" define trigger for UltiSnips, tab is used by youcompleteme
+" define trigger for UltiSnips, tab is used by youcompleteme (or copilot)
 " alt key is weird, here's a workaround
 let g:UltiSnipsExpandTrigger="<C-s>"
 " these are the defaults, but I put them here as a reminder
