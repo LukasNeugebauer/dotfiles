@@ -115,3 +115,5 @@ discretization
 eq
 integrality
 Minkowski
+eqs
+resample
