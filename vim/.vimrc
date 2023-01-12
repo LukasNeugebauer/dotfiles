@@ -75,10 +75,11 @@ let g:gruvbox_contrast_dark="medium"
 let g:UltiSnipsSnippetDirectories=["~/.config/vim/snippets"]
 " open vertical split to edit snippet file
 let g:UltiSnipsEditSplit="vertical"
-" ignore annoying warnings in latex
-let g:syntastic_tex_chktex_quiet_messages = {'regex': [
-            \ '\Vpossible unwanted space at',
-            \ 'Delete this space to maintain correct pagereferences']}
+" only use lacheck, not chktex in latex, chktex sucks
+let g:syntastic_tex_checkers = ['lacheck', 'proselint']
+" let g:syntastic_tex_chktex_quiet_messages = {'regex': [
+"             \ '\Vpossible unwanted space at',
+"             \ 'Delete this space to maintain correct pagereferences']}
 "relaxing the max line length in python code checking using flake8
 "88 corresponds to the value used by black, 10% more than 80
 let g:syntastic_python_checker = ["flake8"]
@@ -133,6 +134,9 @@ autocmd VimEnter * NERDTree | wincmd p
 
 " open all .tex files as filetype "tex", not "plaintex"
 let g:tex_flavor = "latex"
+
+" always resize splits after window size changes
+autocmd VimResized * wincmd =
 
 "===============================================================================
 " 3. KEYBOARD REMAPPINGS
