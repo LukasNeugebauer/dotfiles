@@ -19,19 +19,23 @@ snippet en "enumerate" b
 endsnippet
 
 snippet p "paragraph"
-\paragraph
+\paragraph{$1} $2
 endsnippet
 
 snippet s "section" b
-\section
+\section{$1} $2
 endsnippet
 
 snippet ss "subsection" b
-\subsection
+\subsection{$1} $2
 endsnippet
 
 snippet ti "italic text"
-\textit{$1}
+\textit{$1} $2
+endsnippet
+
+snippet tb "bold text"
+\textbf{$1} $2
 endsnippet
 
 # snippets for acro package
@@ -56,9 +60,9 @@ endsnippet
 
 # citations
 snippet tc "text citation"
-\textcite{$1}
+\textcite{$1} $2
 endsnippet
 
 snippet pc "parenthetical citation"
-\parencite{$1}
+\parencite{$1} $2
 endsnippet
