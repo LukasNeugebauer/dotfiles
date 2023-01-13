@@ -39,6 +39,7 @@ call vundle#begin()
     Plugin 'SirVer/ultisnips'
     "latex specific
     Plugin 'xuhdev/vim-latex-live-preview'
+    Plugin 'matze/vim-tex-fold'
     "stan specific
     Plugin 'eigenfoo/stan-vim'
     "undistracted writing
