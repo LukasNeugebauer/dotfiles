@@ -126,9 +126,9 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: browser"
 set $ws2 "2: email"
-set $ws3 "3: zotero"
-set $ws4 "4: python"
-set $ws5 "5: matlab"
+set $ws3 "3: thesis"
+set $ws4 "4: zotero"
+set $ws5 "5:"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
