@@ -166,9 +166,9 @@ function clearlatex(){
   oldpath=$(pwd)
   cd $newpath
   # define file endings that will be deleted
-  declare -a endings=("aux" "bcf" "log" "lof" "lot" "run.xml" "toc" "bbl" "blg")
+  declare -a endings=("aux" "bcf" "log" "lof" "lot" "run.xml" "toc" "bbl" "blg" "out")
   for ending in $endings; do
-    [[ -n "*.$ending" ]] && rm -f *.$ending
+      [[ -n $(ls *.$ending) ]] && rm -f *.$ending
   done
   cd $oldpath
 }
