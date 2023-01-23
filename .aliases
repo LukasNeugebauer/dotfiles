@@ -1,6 +1,6 @@
 # general linux stuff
 alias ls="ls -h --color=auto"
-alias l="ls -la"
+alias l="ls -lA"
 alias grep="grep --color=auto"
 alias rm="rm -I"
 alias cp="cp -r"
