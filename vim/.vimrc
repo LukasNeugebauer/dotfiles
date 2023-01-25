@@ -47,6 +47,9 @@ call vundle#begin()
     Plugin 'junegunn/limelight.vim'
     " preview changes and searches
     Plugin 'markonm/traces.vim'
+    " session management
+    Plugin 'xolox/vim-session'
+    Plugin 'xolox/vim-misc'
 call vundle#end()
 filetype plugin indent on
 syntax on
@@ -58,20 +61,26 @@ syntax on
 let g:goyo_width=120
 let g:limelight_default_coefficient=0.6
 let g:limelight_conceal_ctermfg='LightGray'
+
 "configure youcompleteme plugin
 let g:ycm_autoclose_preview_after_completion = 1
+
 "configure vim-latex-live-preview
 let g:livepreview_cursorhold_recompile = 0
 let g:livepreview_use_biber = 1
+
+" configure nerdtree
 "ignore output of pdflatex in nerdtree
 set wildignore+=*.aux,*.bcf,*.log,*.lof,*.lot,*.run.xml,*.toc,*.bbl,*.blg
 let NERDTreeRespectWildIgnore=1
+
 " activate color matching for opening and closing parantheses
 let g:rainbow_active=1
 " configure colorscheme
 let g:gruvbox_transparent_background = 0
 let g:gruvbox_termcolors = 1
 let g:gruvbox_contrast_dark="medium"
+
 " define version controlled path for ultisnips
 let g:UltiSnipsSnippetDirectories=["~/.config/vim/snippets"]
 " open vertical split to edit snippet file
@@ -85,6 +94,15 @@ let g:syntastic_tex_checkers = ['lacheck', 'proselint']
 "88 corresponds to the value used by black, 10% more than 80
 let g:syntastic_python_checker = ["flake8"]
 let g:syntastic_python_flake8_args = "--max-line-length=88"
+" Settings for vim-session
+" don't ask for autosave of sessions
+let g:session_autosave = 'no'
+" don't save buffers, options and help windows
+set sessionoptions-=buffers
+set sessionoptions-=options
+set sessionoptions-=help
+" autosave every 15 minutes
+let g:session_autosave_interval = 15
 
 
 "===============================================================================
@@ -130,14 +148,26 @@ set spelllang=en
 highlight SpellBad ctermbg=red ctermfg=white
 "guibg=red guifg=white
 
-" open NERDTree on startup
+" NERDTree settings
+"open NERDTree on startup
 autocmd VimEnter * NERDTree | wincmd p
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1
+    \ && exists('b:NERDTree') && b:NERDTree.isTabTree() | q | endif
+" kill tab if only NERDTree is left
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree')
+    \ && b:NERDTree.isTabTree() | quit | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+'
+    \ && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() |
+    \ buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " open all .tex files as filetype "tex", not "plaintex"
 let g:tex_flavor = "latex"
 
 " always resize splits after window size changes
 autocmd VimResized * wincmd =
+
 
 "===============================================================================
 " 3. KEYBOARD REMAPPINGS
