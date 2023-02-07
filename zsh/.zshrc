@@ -51,8 +51,8 @@ bindkey '\e[H' beginning-of-line
 bindkey '\e[F' end-of-line
 
 # only search history that starts with the prompt
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
 
 # Set colors
 # Normal Colors
