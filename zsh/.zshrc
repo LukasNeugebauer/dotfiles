@@ -147,14 +147,70 @@ function mcd () {
     cd $1
 }
 
-# some functions for latex
-function pbpp(){
-# this one is to compile latex with bibtex in one step
-# pbpp = pdflatex-bibtex-pdflatex-pdflatex
-    pdflatex $1
-    biber ${1%.*}
-    pdflatex $1
-    pdflatex $1
+function pbpp() {
+# Function to fully compile a LaTeX document including bibliography
+# Redirects output and only shows errors if it fails at any step
+
+    # Check if a filename was provided
+    if [ -z "$1" ]; then
+        echo "Usage: pbpp <filename.tex>"
+        return 1
+    fi
+
+    # Define the name of the temporary log file
+    log_file=$(mktemp)
+
+    # Run pdflatex with options to fail at every error and not go into a prompt
+    echo "Running pdflatex (pass 1)..."
+    pdflatex -interaction=nonstopmode -halt-on-error -output-directory=$(dirname "$1") -aux-directory=$(dirname "$1") "$1" > "$log_file" 2>&1
+
+    # Check if pdflatex returned an error
+    if [ $? -ne 0 ]; then
+        echo "pdflatex failed"
+        echo "Printing last 20 lines of log file:"
+        tail -n 20 "$log_file"
+        return 1
+    fi
+
+    # Run biber to generate bibliography data
+    echo "Running biber..."
+    biber $(basename "$1" .tex) > "$log_file" 2>&1
+
+    # Check if biber returned an error
+    if [ $? -ne 0 ]; then
+        echo "biber failed"
+        echo "Printing last 20 lines of log file:"
+        tail -n 20 "$log_file"
+        return 1
+    fi
+
+    # Run pdflatex again to resolve cross-references and update the table of contents
+    echo "Running pdflatex (pass 2)..."
+    pdflatex -interaction=nonstopmode -output-directory=$(dirname "$1") -aux-directory=$(dirname "$1") "$1" > "$log_file" 2>&1
+
+    # Check if pdflatex returned an error
+    if [ $? -ne 0 ]; then
+        echo "pdflatex failed"
+        echo "Printing last 20 lines of log file:"
+        tail -n 20 "$log_file"
+        return 1
+    fi
+
+    # Run pdflatex a third time to ensure everything is properly resolved
+    echo "Running pdflatex (pass 3)..."
+    pdflatex -interaction=nonstopmode -output-directory=$(dirname "$1") -aux-directory=$(dirname "$1") "$1" > "$log_file" 2>&1
+
+    # Check if pdflatex returned an error
+    if [ $? -ne 0 ]; then
+        echo "pdflatex failed"
+        echo "Printing last 20 lines of log file:"
+        tail -n 20 "$log_file"
+        return 1
+    fi
+
+    echo "pdflatex finished successfully"
+    # Delete the temporary log file
+    rm "$log_file"
 }
 
 function clearlatex(){
