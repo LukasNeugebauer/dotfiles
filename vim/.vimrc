@@ -29,6 +29,7 @@ call vundle#begin()
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'scrooloose/nerdtree'
     Plugin 'tpope/vim-commentary'
+    Plugin 'ap/vim-css-color'
     "catch-all programming package highlighting, indentation, etc.
     Plugin 'sheerun/vim-polyglot'
     " syntax checking
@@ -182,6 +183,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" move between folded lines as if they were not folded
+nnoremap j gj
+nnoremap k gk
+
 " enable copy/paste in and out of vim
 " visual mode
     " copy, i.e. yank into special buffer
@@ -262,10 +267,11 @@ au BufNewFile,BufRead *.stan
 " enable spell checking automatically
 " ignore acronyms
 au BufNewFile,BufRead *.tex
-    \ set textwidth=100 |
+    \ set wrap |
     \ set linebreak |
-    \ set cc=100 |
+    \ set cc= |
     \ set spell!
+"    \ set columns=120
 
 " MATLAB/Octave
 "set cc to 90 characters in matlab files
