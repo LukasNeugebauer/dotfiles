@@ -102,6 +102,7 @@ export EDITOR=vim
 export BROWSER=brave
 export TERMINAL=alacritty
 export FREESURFER_HOME=$HOME/freesurfer
+export PREPRINT=$HOME/Documents/papers/bafeg/preprint
 
 # source syntax highlighting because why not
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
