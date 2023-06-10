@@ -262,8 +262,6 @@ function bib_search_title(){
 # completely useless but looks cool and impresses normies
 neofetch
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/lukas/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -279,4 +277,5 @@ unset __conda_setup
 if [ -f "/home/lukas/miniconda3/etc/profile.d/mamba.sh" ]; then
     . "/home/lukas/miniconda3/etc/profile.d/mamba.sh"
 fi
-# <<< conda initialize <<<
+
+[[ -f ~/.config/.api-keys ]] && source ~/.config/.api-keys
