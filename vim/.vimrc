@@ -41,6 +41,7 @@ call vundle#begin()
     "latex specific
     Plugin 'xuhdev/vim-latex-live-preview'
     Plugin 'matze/vim-tex-fold'
+    Plugin 'vim-voom/VOoM'
     "stan specific
     Plugin 'eigenfoo/stan-vim'
     "undistracted writing
@@ -104,6 +105,9 @@ set sessionoptions-=options
 set sessionoptions-=help
 " autosave every 15 minutes
 let g:session_autosave_interval = 15
+
+" open voom tree structure on the right side
+let g:voom_tree_placement = 'right'
 
 
 "===============================================================================
