@@ -274,7 +274,8 @@ au BufNewFile,BufRead *.tex
     \ set wrap |
     \ set linebreak |
     \ set cc= |
-    \ set spell!
+    \ set spell! |
+    \ Voom latex
 "    \ set columns=120
 
 " MATLAB/Octave
