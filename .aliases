@@ -1,4 +1,5 @@
 # general linux stuff
+alias ls=lsd
 alias ls="ls -h --color=auto"
 alias l="ls -lA"
 alias grep="grep --color=auto"
