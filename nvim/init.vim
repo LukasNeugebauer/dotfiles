@@ -70,8 +70,17 @@ call plug#begin()
     Plug 'xolox/vim-session'
     Plug 'xolox/vim-misc'
 
+    " LSP stuff
     " config for language servers
     Plug 'neovim/nvim-lspconfig'
+    " autocomplete
+    Plug 'hrsh7th/nvim-cmp'
+    " sources for autocomplete: lsp, buffer, path, cmdline and snippets
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
     " better syntax highlighting and other stuff that I have no clue about tbh
     Plug 'nvim-treesitter/nvim-treesitter'
@@ -81,6 +90,8 @@ call plug#end()
 
 " and configure them
 lua require'nvim-tree'.setup{}
+
+luafile lua/lsp-cmp-config.lua
 
 "settings for goyo and limelight
 let g:goyo_width=120
@@ -103,17 +114,10 @@ let g:gruvbox_contrast_dark="medium"
 
 " define version controlled path for ultisnips
 let g:UltiSnipsSnippetDirectories=["~/.config/vim/snippets"]
+
 " open vertical split to edit snippet file
 let g:UltiSnipsEditSplit="vertical"
-" only use lacheck, not chktex in latex, chktex sucks
-let g:syntastic_tex_checkers = ['lacheck', 'proselint']
-" let g:syntastic_tex_chktex_quiet_messages = {'regex': [
-"             \ '\Vpossible unwanted space at',
-"             \ 'Delete this space to maintain correct pagereferences']}
-"relaxing the max line length in python code checking using flake8
-"88 corresponds to the value used by black, 10% more than 80
-let g:syntastic_python_checker = ["flake8"]
-let g:syntastic_python_flake8_args = "--max-line-length=88"
+"
 " Settings for vim-session
 " don't ask for autosave of sessions
 let g:session_autosave = 'no'
@@ -270,6 +274,11 @@ au BufNewFile,BufRead *.stan
 	\ set fileformat=unix
 
 " yaml and json
+au BufNewFile,BufRead *.{json,yml,yaml,toml}
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+    \ set expandtab
 
 " Latex
 " hard wrapping lines
