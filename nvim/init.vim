@@ -13,9 +13,6 @@
 "===============================================================================
 
 " load plugins
-
-filetype off
-set nocompatible
 call plug#begin()
 
     " nice status bar on the bottom
@@ -90,8 +87,17 @@ call plug#end()
 
 " and configure them
 lua require'nvim-tree'.setup{}
-
-luafile lua/lsp-cmp-config.lua
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "python", "c", "lua", "vim", "vimdoc", "query" },
+  sync_install = false,
+  auto_install = false,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
 
 "settings for goyo and limelight
 let g:goyo_width=120
@@ -101,7 +107,7 @@ let g:limelight_conceal_ctermfg='LightGray'
 "configure youcompleteme plugin
 let g:ycm_autoclose_preview_after_completion = 1
 
-"configure vim-latex-live-preview
+"configure vim-latex-liveorpreview
 let g:livepreview_cursorhold_recompile = 0
 let g:livepreview_use_biber = 1
 
@@ -183,6 +189,7 @@ autocmd VimResized * wincmd =
 
 lua require'lspconfig'.pyright.setup{}
 
+luafile lua/lsp-cmp-config.lua
 "===============================================================================
 " 3. KEYBOARD REMAPPINGS
 "===============================================================================
