@@ -5,6 +5,7 @@
 "   3. Keyboard remappings: define some shortcuts
 "   4. Filetype specific settings: Deal with the peculiarities of python, stan
 "       and matlab
+"   5. Startup configuration: Commands that run every time I start nvim
 "Lukas Neugebauer
 
 
@@ -35,6 +36,9 @@ call plug#begin()
     " automatically detects correct characters for comments
     Plug 'tpope/vim-commentary'
 
+    " git integration
+    Plug 'tpope/vim-fugitive'
+
     " preview colors in terminal
     Plug 'ap/vim-css-color'
 
@@ -52,6 +56,12 @@ call plug#begin()
 
     " show file structure for latex and markdown
     Plug 'vim-voom/VOoM'
+
+    "Live preview in the browser for markdown files
+    Plug 'iamcco/markdown-preview.nvim'
+
+    "improved tab management, e.g. named tabs
+    Plug 'gcmt/taboo.vim'
 
     " stan syntax highlighting
     Plug 'eigenfoo/stan-vim'
@@ -89,9 +99,18 @@ call plug#end()
 lua require'nvim-tree'.setup{}
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "python", "c", "lua", "vim", "vimdoc", "query" },
+  ensure_installed = {
+      "python",
+	  "c",
+	  "lua",
+	  "vim",
+	  "vimdoc",
+	  "query",
+	  "luadoc",
+	  "markdown"
+  },
   sync_install = false,
-  auto_install = false,
+  auto_install = true,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -181,6 +200,8 @@ set spelllang=en
 highlight SpellBad ctermbg=red ctermfg=white
 "guibg=red guifg=white
 
+" make sure we're using the correct python binary
+let g:python3_host_prog = "/Users/l.neugebauer/.pyenv/versions/neovim/bin/python"
 " open all .tex files as filetype "tex", not "plaintex"
 let g:tex_flavor = "latex"
 
@@ -189,7 +210,7 @@ autocmd VimResized * wincmd =
 
 lua require'lspconfig'.pyright.setup{}
 
-luafile lua/lsp-cmp-config.lua
+luafile ~/.config/nvim/lua/lsp-cmp-config.lua
 "===============================================================================
 " 3. KEYBOARD REMAPPINGS
 "===============================================================================
@@ -263,7 +284,7 @@ nnoremap <Backspace> :nohl<CR>
 
 " Python
 " make everything in python file compatible with PEP8
-au BufNewFile,BufRead *.py
+au BufNewFile,BufRead *.py |
 	\ set tabstop=4 |
 	\ set softtabstop=4 |
 	\ set shiftwidth=4 |
@@ -272,7 +293,7 @@ au BufNewFile,BufRead *.py
 	\ set fileformat=unix
 
 " STAN
-au BufNewFile,BufRead *.stan
+au BufNewFile,BufRead *.stan |
 	\ set tabstop=2 |
 	\ set softtabstop=2 |
 	\ set shiftwidth=2 |
@@ -281,19 +302,36 @@ au BufNewFile,BufRead *.stan
 	\ set fileformat=unix
 
 " yaml and json
-au BufNewFile,BufRead *.{json,yml,yaml,toml}
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+au BufNewFile,BufRead *.{json,yml,yaml,toml} |
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+	\ set autoindent |
     \ set expandtab
 
 " Latex
 " hard wrapping lines
 " enable spell checking automatically
 " ignore acronyms
-au BufNewFile,BufRead *.tex
+au BufNewFile,BufRead *.tex |
     \ set wrap |
     \ set linebreak |
     \ set cc= |
     \ set spell! |
     \ Voom latex
+
+au BufNewFile,BufRead *.sql |
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set expandtab |
+	\ set autoindent |
+    \ set commentstring="--\ %s"
+
+
+"===============================================================================
+" 5.STARTUP CONFIGURATION
+"===============================================================================
+
+" open file tree
+NvimTreeFocus
