@@ -88,7 +88,7 @@ On_White='\e[47m'       # White
 NC="\e[m"               # Color Reset
 
 # load alises
-[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+[ -f "$HOME/.config/.aliases" ] && source "$HOME/.config/.aliases"
 
 # enable autocomplete
 autoload -U compinit
@@ -100,9 +100,6 @@ _comp_options+=(globdots)
 # set some environment variables
 export EDITOR=vim
 export BROWSER=brave
-export TERMINAL=alacritty
-export FREESURFER_HOME=$HOME/freesurfer
-export PREPRINT=$HOME/Documents/papers/bafeg/preprint
 
 # source syntax highlighting because why not
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
