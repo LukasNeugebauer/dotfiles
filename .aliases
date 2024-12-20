@@ -1,0 +1,9 @@
+# figure out which operating system we're currently using
+current_os=$(uname);
+# source appropriate .aliases file
+if [[ $current_os == "Darwin" ]]; then
+    echo "sourcing macos file"
+    [[ -f ".aliases-macos" ]] && source ".aliases-macos"
+else
+    [[ -f ".aliases-linux" ]] && source ".aliases-linux"
+fi
