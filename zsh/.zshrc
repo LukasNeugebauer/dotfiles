@@ -55,8 +55,8 @@ if [ -f '/Users/l.neugebauer/google-cloud-sdk/completion.zsh.inc' ]; then . '/Us
 fastfetch
 
 # Created by `pipx` on 2024-07-09 15:11:34
-export PATH="$PATH:/Users/l.neugebauer/.local/bin"
+export PATH="$PATH:/Users/$USER/.local/bin"
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 # initialize rust
-[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"  
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
