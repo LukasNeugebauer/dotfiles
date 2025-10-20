@@ -59,4 +59,4 @@ export PATH="$PATH:/Users/l.neugebauer/.local/bin"
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 # initialize rust
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"  
