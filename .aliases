@@ -7,7 +7,7 @@ alias rm="rm -I"
 alias cp="cp -r"
 alias df="df -h"
 alias schlaf="sudo systemctl suspend"
-alias v=vim
+alias v=nvim
 alias diffy="diff -y --color=auto"
 alias history="history 0"
 
