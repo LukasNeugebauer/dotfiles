@@ -87,10 +87,11 @@ call plug#begin()
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
-    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+    " Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
     " better syntax highlighting and other stuff that I have no clue about tbh
     Plug 'nvim-treesitter/nvim-treesitter'
+
 
 call plug#end()
 
@@ -201,7 +202,7 @@ highlight SpellBad ctermbg=red ctermfg=white
 "guibg=red guifg=white
 
 " make sure we're using the correct python binary
-let g:python3_host_prog = "/Users/l.neugebauer/.pyenv/versions/neovim/bin/python"
+let g:python3_host_prog = "/Users/l.neugebauer/.vim/.venv/bin/python"
 " open all .tex files as filetype "tex", not "plaintex"
 let g:tex_flavor = "latex"
 
