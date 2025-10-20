@@ -60,3 +60,6 @@ export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 # initialize rust
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+
+# add uv completion for zsh
+eval "$(uv generate-shell-completion zsh)"
