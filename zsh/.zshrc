@@ -58,8 +58,22 @@ fastfetch
 export PATH="$PATH:/Users/$USER/.local/bin"
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
-# initialize rust
+# initialize rust if present
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 # add uv completion for zsh
 eval "$(uv generate-shell-completion zsh)"
+
+# get github token for homebrew auth
+export HOMEBREW_GITHUB_API_TOKEN=$(gh auth token)
+
+# wrapper function to access cloud infra
+function gdp-access() {
+    eval "$(dp-devinfra destinations access --export-env-vars "$1" "$2" "$3")"
+}
+
+# set up claude code since the .claude/settings.json doesn't seem to work
+export ANTHROPIC_BASE_URL="http://localhost:36253"
+export ANTHROPIC_AUTH_TOKEN="cloudflare"
+export DISABLE_TELEMETRY="1"
+export DISABLE_ERROR_REPORTING="1"
