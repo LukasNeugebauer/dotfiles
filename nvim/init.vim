@@ -210,7 +210,7 @@ let g:tex_flavor = "latex"
 " always resize splits after window size changes
 autocmd VimResized * wincmd =
 
-lua vim.lsp.config('pyright', {})
+lua require'lspconfig'.pyright.setup{}
 
 luafile ~/.config/nvim/lua/lsp-cmp-config.lua
 "===============================================================================
